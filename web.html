@@ -3,31 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Greetings</title>
+    <title>Birthday greetings</title>
 </head>
 <body>
+    
     <select id="languageSelect">
-        <option value="he">עברית</option>
         <option value="en">English</option>
+        <option value="he">עברית</option> 
         <option value="ar">العربية</option>
     </select>
 
-    <form id="myForm">
-        <label id="nameLabel" for="name">שם מלא:</label>
+<h1 id="h1">Birthday greetings</h1>
+    <form id="myForm" action="/submit/" method="POST">';
+        <label id="nameLabel" for="name">Full Name:</label>
         <input type="text" id="name" name="name"><br><br>
-        <label id="ageLabel" for="age">גיל:</label>
+        <label id="ageLabel" for="age">Age:</label>
         <input type="number" id="age" name="age"><br><br>
-        <label id="hobbyLabel" for="hobby">תחביב:</label>
+        <label id="hobbyLabel" for="hobby">Hobby:</label>
         <input type="text" id="hobby" name="hobby"><br><br>
-        <label id="emailLabel" for="email">אימייל:</label>
+        <label id="emailLabel" for="email">Email:</label>
         <input type="email" id="email" name="email"><br><br>
-        <label id="genderLabel">מין:</label>
-        <input type="radio" name="gender" value="male" id="male"> זכר
-        <input type="radio" name="gender" value="female" id="female"> נקבה<br><br>
-        <input type="submit" value="שלח">
+        <label id="genderLabel">Gender:</label>
+        <input type="radio" name="gender" value="male" id="male"> Male
+        <input type="radio" name="gender" value="female" id="female"> Female<br><br>
+        <input type="submit" value="Send" id="sendSubmit">
     </form>
 
     <script>
+        const titelH1 = document.getElementById('h1');
         const languageSelect = document.getElementById('languageSelect');
         const nameLabel = document.getElementById('nameLabel');
         const ageLabel = document.getElementById('ageLabel');
@@ -36,11 +39,13 @@
         const genderLabel = document.getElementById('genderLabel');
         const maleRadio = document.getElementById('male');
         const femaleRadio = document.getElementById('female');
+        const sendSubmit = document.getElementById('sendSubmit');
 
         languageSelect.addEventListener('change', () => {
             const selectedLanguage = languageSelect.value;
             switch (selectedLanguage) {
                 case 'he':
+                    titelH1.textContent = 'ברכות ליום הולדת';
                     nameLabel.textContent = 'שם מלא:';
                     ageLabel.textContent = 'גיל:';
                     hobbyLabel.textContent = 'תחביב:';
@@ -48,8 +53,10 @@
                     genderLabel.textContent = 'מין:';
                     maleRadio.nextSibling.textContent = 'זכר';
                     femaleRadio.nextSibling.textContent = 'נקבה';
+                    sendSubmit.value = 'שלח';
                     break;
                 case 'en':
+                    titelH1.textContent = 'Birthday greetings';
                     nameLabel.textContent = 'Full Name:';
                     ageLabel.textContent = 'Age:';
                     hobbyLabel.textContent = 'Hobby:';
@@ -57,8 +64,10 @@
                     genderLabel.textContent = 'Gender:';
                     maleRadio.nextSibling.textContent = 'Male';
                     femaleRadio.nextSibling.textContent = 'Female';
+                    sendSubmit.value = 'Send';
                     break;
                 case 'ar':
+                    titelH1.textContent ='تحيات عيد ميلاد';
                     nameLabel.textContent = 'الاسم الكامل:';
                     ageLabel.textContent = 'عمر:';
                     hobbyLabel.textContent = 'هواية:';
@@ -66,6 +75,7 @@
                     genderLabel.textContent = 'الجنس:';
                     maleRadio.nextSibling.textContent = 'ذكر';
                     femaleRadio.nextSibling.textContent = 'أنثى';
+                    sendSubmit.value = 'يرسل';
                     break;
             }
         });
