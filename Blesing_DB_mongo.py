@@ -1,7 +1,7 @@
 
 from pymongo import MongoClient
 from datetime import datetime
-from Mongo import Access_keys
+from pymongo import Access_keys
 
 def save_text_in_mogoDB(text):
 # Connect to MongoDB
@@ -29,3 +29,4 @@ def save_text_in_mogoDB(text):
 
     # Print the ID of the inserted document
     print(f"Blessing saved with ID: {result.inserted_id}")
+

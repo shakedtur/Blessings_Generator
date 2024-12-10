@@ -76,35 +76,34 @@ def define_language_belssing(text):
     return str(text)
 
 def Recipient_name(text):
-    print("What is the name of brithday person?")
-    name=check_text_input()
-    text=text+f"Recipient's Name: {name}"
+    name = input("What is the name of the birthday person? ")
+    text += f"\nRecipient's Name: {name}"
+    return text
 
-    return str(text)
+def recipient_age(text):
+    age = input("What is the age of the birthday person? ")
+    text += f"\nRecipient's Age: {age}"
+    return text
 
-def Recipent_age(text):
-    pass
+def define_relationship(text):
+    relationship = input("What is your relationship to the recipient? (e.g., friend, family member, coworker) ")
+    text += f"\nYour Relationship: {relationship}"
+    return text
 
-def define_Relationship(text):
-    #Your Relationship to the Recipient: (e.g., friend, family member, coworker)
-    return str(text)
-    pass
-
-def define_Recipient_Hobbies(text):
-    #Recipient's Interests or Hobbies:
-
-    return str(text)
-    pass
+def define_recipient_hobbies(text):
+    hobbies = input("What are the recipient's interests or hobbies? (e.g., traveling, cooking, painting) ")
+    text += f"\nRecipient's Hobbies: {hobbies}"
+    return text
 
 def define_style(text):
-    #The Tone or Style of the Blessing: (e.g., funny, heartfelt, formal, informal)
-    return str(text)
-    pass
+    style = input("What is the tone or style of the blessing? (e.g., funny, heartfelt, formal, informal) ")
+    text += f"\nBlessing Style: {style}"
+    return text
 
 def define_hobbie(text):
-    #Recipient's Interests or Hobbies: Traveling, cooking, painting
-    return str(text)
-    pass
+    hobbies = input("What are the recipient's interests or hobbies? (e.g., traveling, cooking, painting) ")
+    text += f"\nRecipient's Hobbies: {hobbies}"
+    return text
 
 
 #פונקציה ראשית

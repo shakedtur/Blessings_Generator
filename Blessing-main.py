@@ -1,16 +1,12 @@
-
-"""must install once time in the terminal:
-
-pip install -q -U google-generativeai
-"""
-
 import os
 import google.generativeai as genai
-from Mongo import Blesing_DB_mongo as DB
-
-from Mongo import Access_keys
-
+from Blesing_DB_mongo import DB
+from pymongo import MongoClient
+from Access_keys import AK
 from datetime import datetime
+
+client = MongoClient('mongodb://localhost:27017/')
+db = client['your_database']
 
 def input_details_from_user():
     details_dict={"name": None, "age":None,"language": "english","sex": "female","style": "Blessing in rhymes" }
@@ -39,7 +35,7 @@ def belssing_request(sentence_request):
     #user_text=str(input("enter a sentence:\n"))
     # user_text = "כתוב ברכה בחרוזים ליום הולדת 25 של שי"
     # print(user_text)
-    API_KEY= Access_keys.api_key
+    API_KEY= AK.api_key
     genai.configure(api_key=API_KEY)
 
     # Create the model
@@ -81,7 +77,7 @@ def main():
     gemini_answer= belssing_request(senc)
     print(gemini_answer)
     #belssing_request()
-    DB.save_text_in_mogoDB(gemini_answer)
+    # DB.save_text_in_mogoDB(gemini_answer)
 
 
 main()
