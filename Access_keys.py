@@ -1,4 +1,4 @@
 
 
-api_key="AIzaSyBpjXSITUsVs5rTDeXR7gaKYji57j2wrcA"
+api_key="test"
 Mongo_secret= "test"
