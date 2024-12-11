@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Greetings</title>
+</head>
+<body>
+    <select id="languageSelect">
+        <option value="he">עברית</option>
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+    </select>
+
+<body>
+    <h1>Birthday Greetings</h1>
+    <form id="myForm" action="/" method="post">
+        <label id="nameLabel" for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label id="ageLabel" for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+        <label id="hobbyLabel" for="hobby">Hobby:</label>
+        <input type="text" id="hobby" name="hobby" required><br><br>
+        <label id="emailLabel" for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <label id="genderLabel">Gender:</label>
+        <input type="radio" name="gender" value="male" id="male" required> Male
+        <input type="radio" name="gender" value="female" id="female"> Female<br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    {% if result %}
+        <div id="result">
+            <h2>Result:</h2>
+            <p>{{ result }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
+
+
+    <script>
+        const languageSelect = document.getElementById('languageSelect');
+        const nameLabel = document.getElementById('nameLabel');
+        const ageLabel = document.getElementById('ageLabel');
+        const hobbyLabel = document.getElementById('hobbyLabel');
+        const emailLabel = document.getElementById('emailLabel');
+        const genderLabel = document.getElementById('genderLabel');
+        const maleRadio = document.getElementById('male');
+        const femaleRadio = document.getElementById('female');
+
+        languageSelect.addEventListener('change', () => {
+            const selectedLanguage = languageSelect.value;
+            switch (selectedLanguage) {
+                case 'he':
+                    nameLabel.textContent = 'שם מלא:';
+                    ageLabel.textContent = 'גיל:';
+                    hobbyLabel.textContent = 'תחביב:';
+                    emailLabel.textContent = 'אימייל:';
+                    genderLabel.textContent = 'מין:';
+                    maleRadio.nextSibling.textContent = 'זכר';
+                    femaleRadio.nextSibling.textContent = 'נקבה';
+                    break;
+                case 'en':
+                    nameLabel.textContent = 'Full Name:';
+                    ageLabel.textContent = 'Age:';
+                    hobbyLabel.textContent = 'Hobby:';
+                    emailLabel.textContent = 'Email:';
+                    genderLabel.textContent = 'Gender:';
+                    maleRadio.nextSibling.textContent = 'Male';
+                    femaleRadio.nextSibling.textContent = 'Female';
+                    break;
+                case 'ar':
+                    nameLabel.textContent = 'الاسم الكامل:';
+                    ageLabel.textContent = 'عمر:';
+                    hobbyLabel.textContent = 'هواية:';
+                    emailLabel.textContent = 'البريد الإلكتروني:';
+                    genderLabel.textContent = 'الجنس:';
+                    maleRadio.nextSibling.textContent = 'ذكر';
+                    femaleRadio.nextSibling.textContent = 'أنثى';
+                    break;
+            }
+        });
+
+    </script>
+</body>
+</html>
