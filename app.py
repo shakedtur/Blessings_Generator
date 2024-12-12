@@ -10,13 +10,20 @@ def process_data(name, age, hobby, email, gender):
     web_sentence= web_page.recipient_age(web_sentence,age)
     web_sentence= web_page.define_recipient_hobbies(web_sentence,hobby)
     web_sentence= web_page.define_sex(web_sentence,gender)
-    print(f"##########\n{web_sentence}\n###############\n")
-    import Gemini_messege
-    answer= Gemini_messege.belssing_request(web_sentence)
-    # TODO: add save in data base
+    print(f"##############\n{web_sentence}\n###############\n")
+    # import Gemini_messege
+    # answer= Gemini_messege.belssing_request(web_sentence)
+    # print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    # print(answer)
+    # print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+    # TODO: add saving in data base
+    #request_DB =jsonify({"result": result})
+    #TODO: send message to gemini via API
+    #return answer + f"\nProcessed:test Name - {name}, Age - {age}, Hobby - {hobby}, Email - {email}, Gender - {gender}"
+
+    return web_sentence
 
 
-    return answer + f"\nProcessed:test Name - {name}, Age - {age}, Hobby - {hobby}, Email - {email}, Gender - {gender}"
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
