@@ -1,5 +1,5 @@
 
-def check_input_in_range(min_value, max_value):
+def check_input_in_range(min_value, max_value,num):
     """
       Validates user input to be within a given numeric range.
       :param min_value: The minimum acceptable value.
@@ -9,32 +9,31 @@ def check_input_in_range(min_value, max_value):
 
     while True:
         try:
-            value = int(input(f"Enter a number between {min_value} and {max_value}: "))
+            value =num
             if min_value <= value <= max_value:
-                #print(f"Valid input: {value}")
                 return value
             else:
-                print(f"Input is out of range. Please enter a number between {min_value} and {max_value}.")
+                return (f"Input is out of range. Please enter a number between {min_value} and {max_value}.")
         except ValueError:
             print("Invalid input. Please enter a valid number.")
 
 
-def check_text_input():
+def check_text_input(user_text):
     """
     Validates that the user input contains only alphabetic characters.
     :return: The valid text input.
     """
     while True:
-        text = input("Enter text (letters only): ")
+        text = user_text
         if text.isalpha():
            #print(f"Valid input: {text}")
             return text
         else:
-            print("Invalid input. Please enter letters only.")
+            return ("Invalid input. Please enter letters only.")
 
 
 def define_reqest_text_gemini():
-    text= "write a birthday blessing consider the follwing parameters:\n"
+    text= "write a Birthday greeting consider the following parameters:\n"
     return str(text)
 
 #2
@@ -53,5 +52,5 @@ def define_recipient_hobbies(text, hobbies):
 
 #7
 def define_sex(text,sex):
-    text += f"\nThe recipient sex is: {sex}"
+    text += f"\nThe recipient gender is: {sex}"
     return text
