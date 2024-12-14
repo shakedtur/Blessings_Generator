@@ -11,6 +11,14 @@
     <select id="languageSelect">
         <option value="en">English</option>
         <option value="he">עברית</option> 
+        <script>
+        const languageSelect = document.getElementById('languageSelect');
+
+            languageSelect.addEventListener('change', () => {
+                const selectedLanguage = languageSelect.value;
+                document.documentElement.dir = selectedLanguage === 'he' ? 'rtl' : 'ltr';
+            });
+            </script>
         <option value="ar">العربية</option>
         <option value="ru">Русский</option>
         <option value="sp">Spanish</option>
@@ -59,9 +67,15 @@
         <input type="submit" value="Send" id="sendSubmit">
     </form>
 
+    {% if result %}
+    <div>
+      <h2 id="result">Result:</h2>
+      <p>{{result}}</p>
+    </div>
+    {% endif %}
+    
     <script>
         const titelH1 = document.getElementById('h1');
-        const languageSelect = document.getElementById('languageSelect');
         const nameLabel = document.getElementById('nameLabel');
         const ageLabel = document.getElementById('ageLabel');
         const hobbyLabel = document.getElementById('hobbyLabel');
@@ -81,6 +95,7 @@
         const emojiNoRadio = document.getElementById('emojiNo');
         const nameWishLabel = document.getElementById('nameWishLabel')
         const sendSubmit = document.getElementById('sendSubmit');
+        const result = document.getElementById('result')
         
 
         languageSelect.addEventListener('change', () => {
@@ -91,8 +106,8 @@
                     nameLabel.textContent = 'שם מלא:';
                     ageLabel.textContent = 'גיל:';
                     hobbyLabel.textContent = 'תחביב:';
-                    kinshipLabel.textContent = 'קרבה';
-                    GreetingStyle.textContent = 'סגנון ברכה';
+                    kinshipLabel.textContent = 'קרבה:';
+                    GreetingStyle.textContent = 'סגנון ברכה:';
                     funnySelect.textContent = 'מצחיק';
                     heartySelect.textContent = 'לבבי';
                     officialSelect.textContent = 'רשמי';
@@ -106,6 +121,7 @@
                     emojiYesRadio.nextSibling.textContent = 'כן';
                     emojiNoRadio.nextSibling.textContent = 'לא';
                     nameWishLabel.textContent = 'שם מאחל הברכה:';
+                    result.textContent = 'תוצאה:';
                     sendSubmit.value = 'שלח';
                     break;
                 case 'en':
@@ -113,8 +129,8 @@
                     nameLabel.textContent = 'Full Name:';
                     ageLabel.textContent = 'Age:';
                     hobbyLabel.textContent = 'Hobby:';
-                    kinshipLabel.textContent = 'kinship';
-                    GreetingStyle.textContent = 'Greeting Style';
+                    kinshipLabel.textContent = 'kinship:';
+                    GreetingStyle.textContent = 'Greeting Style:';
                     funnySelect.textContent = 'funny';
                     heartySelect.textContent = 'hearty';
                     officialSelect.textContent = 'official';
@@ -128,6 +144,7 @@
                     emojiYesRadio.nextSibling.textContent = 'Yes';
                     emojiNoRadio.nextSibling.textContent = 'No';
                     nameWishLabel.textContent = 'There I wish the blessing:';
+                    result.textContent = 'Result:';
                     sendSubmit.value = 'Send';
                     break;
                 case 'ar':
@@ -136,7 +153,7 @@
                     ageLabel.textContent = 'عمر:';
                     hobbyLabel.textContent = 'هواية:';
                     kinshipLabel.textContent = 'القرابة:';
-                    GreetingStyle.textContent = 'أسلوب الترحيب';
+                    GreetingStyle.textContent = 'أسلوب الترحيب:';
                     funnySelect.textContent = 'مضحك';
                     heartySelect.textContent = 'القلبية';
                     officialSelect.textContent = 'رسمي';
@@ -150,6 +167,7 @@
                     emojiYesRadio.nextSibling.textContent = 'نعم';
                     emojiNoRadio.nextSibling.textContent = 'لا';
                     nameWishLabel.textContent = 'هناك أتمنى البركة:';
+                    result.textContent = 'نتيجة:';
                     sendSubmit.value = 'يرسل';
                     break;
                 case 'ru':
@@ -158,7 +176,7 @@
                     ageLabel.textContent = 'возраст:';
                     hobbyLabel.textContent = 'хобби:';
                     kinshipLabel.textContent = 'родство:';
-                    GreetingStyle.textContent = 'Стиль приветствия';
+                    GreetingStyle.textContent = 'Стиль приветствия:';
                     funnySelect.textContent = 'забавный';
                     heartySelect.textContent = 'сердечный';
                     officialSelect.textContent = 'чиновник';
@@ -172,6 +190,7 @@
                     emojiYesRadio.nextSibling.textContent = 'Да';
                     emojiNoRadio.nextSibling.textContent = 'Нет';
                     nameWishLabel.textContent = 'Там я желаю благословения:';
+                    result.textContent = 'Pезультат:';
                     sendSubmit.value = 'Отправлять';
                     break;
                 case 'sp':
@@ -180,7 +199,7 @@
                     ageLabel.textContent = 'Edad:';
                     hobbyLabel.textContent = 'Pasatiempo:';
                     kinshipLabel.textContent = 'Parentesco:';
-                    GreetingStyle.textContent = 'Estilo de saludo';
+                    GreetingStyle.textContent = 'Estilo de saludo:';
                     funnySelect.textContent = 'divertido';
                     heartySelect.textContent = 'abundante';
                     officialSelect.textContent = 'oficial';
@@ -194,16 +213,12 @@
                     emojiYesRadio.nextSibling.textContent = 'Sí';
                     emojiNoRadio.nextSibling.textContent = 'No';
                     nameWishLabel.textContent = 'Ahí deseo la bendición:';
+                    result.textContent = 'Resultado:';
                     sendSubmit.value = 'Enviar';
                     break;
             }
         });
     </script>
-    {%  if result %}
-      <div id="result">
-        <h2>Result:</h2>
-        <p>{{result}}</p>
-      </div>
-      {% endif %}
+   
 </body>
 </html>
