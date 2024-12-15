@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday greetings</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input:not([type="radio"]),
+  select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  input,
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .radio-group {
+    width: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .radio-group input[type="radio"] {
+    margin-right: 10px;
+  }
+
+  #result {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+  }
+</style>
+<body>
+    
+    <select id="languageSelect">
+        <option value="en">English</option>
+        <option value="he">עברית</option> 
+        <script>
+        const languageSelect = document.getElementById('languageSelect');
+
+            languageSelect.addEventListener('change', () => {
+                const selectedLanguage = languageSelect.value;
+                document.documentElement.dir = selectedLanguage === 'he' ? 'rtl' : 'ltr';
+            });
+            </script>
+        <option value="ar">العربية</option>
+        <option value="ru">Русский</option>
+        <option value="sp">Spanish</option>
+    </select>
+
+<h1 id="h1">Birthday greetings</h1>
+    <form id="myForm" action="/" method="POST">
+        <label id="nameLabel" for="name">Full Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label id="ageLabel" for="age">Age:</label>
+        <input type="number" id="age" name="age"><br><br>
+        <label id="hobbyLabel" for="hobby">Hobby:</label>
+        <input type="text" id="hobby" name="hobby"><br><br>
+        <label id="kinshipLabel" for="kinship">Kinship:</label>
+        <input type="text" id="kinship" name="kinship"><br><br>
+        <label id="styleLabel" for="style">Greeting style:</label>
+        <select type="select" id="style" name="style"><br><br>
+            <option value="funny" id="funny">funny</option>
+            <option value="hearty" id="hearty">hearty</option> 
+            <option value="official" id="official">official</option>
+            <option value="beads" id="beads">beads</option>
+            <option value="other" id="other">other</option>
+        <input type="text" id="otherStyle" name="otherStyle" style="display: none;"><br><br>
+        <script>
+        const styleSelect = document.getElementById('style');
+        const otherStyleInput = document.getElementById('otherStyle');
+
+        styleSelect.addEventListener('change', () => {
+            if (styleSelect.value === 'other') {
+            otherStyleInput.style.display = 'block';
+                } else {
+                otherStyleInput.style.display = 'none';
+            }
+        });
+        </script>  
+        <!-- <label id="emailLabel" for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br> -->
+        <label id="genderLabel">Gender:</label>
+        <input type="radio" name="gender" value="male" id="male"> Male
+        <input type="radio" name="gender" value="female" id="female"> Female<br><br>
+        <label id="emojiSelect">Emoji:</label>
+        <input type="radio" name="emoji" value="Yes" id="emojiYes"> Yes
+        <input type="radio" name="emoji" value="No" id="emojiNo"> No<br><br>
+        <label id="nameWishLabel" for="nameWish">There I wish the blessing:</label>
+        <input type="text" id="nameWish" name="nameWish"><br><br>
+        <input type="submit" value="Send" id="sendSubmit">
+    </form>
+
+    {% if result %}
+    <div>
+      <h2 id="result">Result:</h2>
+      <p>{{result}}</p>
+    </div>
+    {% endif %}
+    
+    <script>
+        const titelH1 = document.getElementById('h1');
+        const nameLabel = document.getElementById('nameLabel');
+        const ageLabel = document.getElementById('ageLabel');
+        const hobbyLabel = document.getElementById('hobbyLabel');
+        const kinshipLabel = document.getElementById('kinshipLabel');
+        const GreetingStyle = document.getElementById('styleLabel')
+        const funnySelect = document.getElementById('funny')
+        const heartySelect = document.getElementById('hearty')
+        const officialSelect = document.getElementById('official')
+        const beadsSelect = document.getElementById('beads')
+        const otherSelect = document.getElementById('other')
+        // const emailLabel = document.getElementById('emailLabel');
+        const genderLabel = document.getElementById('genderLabel');
+        const maleRadio = document.getElementById('male');
+        const femaleRadio = document.getElementById('female');
+        const emojiSelect = document.getElementById('emojiSelect');
+        const emojiYesRadio = document.getElementById('emojiYes');
+        const emojiNoRadio = document.getElementById('emojiNo');
+        const nameWishLabel = document.getElementById('nameWishLabel')
+        const sendSubmit = document.getElementById('sendSubmit');
+        const result = document.getElementById('result')
+        
+
+        languageSelect.addEventListener('change', () => {
+            const selectedLanguage = languageSelect.value;
+            switch (selectedLanguage) {
+                case 'he':
+                    titelH1.textContent = 'ברכות ליום הולדת';
+                    nameLabel.textContent = 'שם מלא:';
+                    ageLabel.textContent = 'גיל:';
+                    hobbyLabel.textContent = 'תחביב:';
+                    kinshipLabel.textContent = 'קרבה:';
+                    GreetingStyle.textContent = 'סגנון ברכה:';
+                    funnySelect.textContent = 'מצחיק';
+                    heartySelect.textContent = 'לבבי';
+                    officialSelect.textContent = 'רשמי';
+                    beadsSelect.textContent = 'חרוזים';
+                    otherSelect.textContent = 'אחר';
+                    // emailLabel.textContent = 'אימייל:';
+                    genderLabel.textContent = 'מין:';
+                    maleRadio.nextSibling.textContent = 'זכר';
+                    femaleRadio.nextSibling.textContent = 'נקבה';
+                    emojiSelect.textContent = 'אימוגי?';
+                    emojiYesRadio.nextSibling.textContent = 'כן';
+                    emojiNoRadio.nextSibling.textContent = 'לא';
+                    nameWishLabel.textContent = 'שם מאחל הברכה:';
+                    result.textContent = 'תוצאה:';
+                    sendSubmit.value = 'שלח';
+                    break;
+                case 'en':
+                    titelH1.textContent = 'Birthday greetings';
+                    nameLabel.textContent = 'Full Name:';
+                    ageLabel.textContent = 'Age:';
+                    hobbyLabel.textContent = 'Hobby:';
+                    kinshipLabel.textContent = 'kinship:';
+                    GreetingStyle.textContent = 'Greeting Style:';
+                    funnySelect.textContent = 'funny';
+                    heartySelect.textContent = 'hearty';
+                    officialSelect.textContent = 'official';
+                    beadsSelect.textContent = 'beads';
+                    otherSelect.textContent = 'other';
+                    // emailLabel.textContent = 'Email:';
+                    genderLabel.textContent = 'Gender:';
+                    maleRadio.nextSibling.textContent = 'Male';
+                    femaleRadio.nextSibling.textContent = 'Female';
+                    emojiSelect.textContent = 'Emoji?';
+                    emojiYesRadio.nextSibling.textContent = 'Yes';
+                    emojiNoRadio.nextSibling.textContent = 'No';
+                    nameWishLabel.textContent = 'There I wish the blessing:';
+                    result.textContent = 'Result:';
+                    sendSubmit.value = 'Send';
+                    break;
+                case 'ar':
+                    titelH1.textContent ='تحيات عيد ميلاد';
+                    nameLabel.textContent = 'الاسم الكامل:';
+                    ageLabel.textContent = 'عمر:';
+                    hobbyLabel.textContent = 'هواية:';
+                    kinshipLabel.textContent = 'القرابة:';
+                    GreetingStyle.textContent = 'أسلوب الترحيب:';
+                    funnySelect.textContent = 'مضحك';
+                    heartySelect.textContent = 'القلبية';
+                    officialSelect.textContent = 'رسمي';
+                    beadsSelect.textContent = 'الخرز';
+                    otherSelect.textContent = 'آخر';
+                    // emailLabel.textContent = 'البريد الإلكتروني:';
+                    genderLabel.textContent = 'الجنس:';
+                    maleRadio.nextSibling.textContent = 'ذكر';
+                    femaleRadio.nextSibling.textContent = 'أنثى';
+                    emojiSelect.textContent = '?الرموز التعبيرية';
+                    emojiYesRadio.nextSibling.textContent = 'نعم';
+                    emojiNoRadio.nextSibling.textContent = 'لا';
+                    nameWishLabel.textContent = 'هناك أتمنى البركة:';
+                    result.textContent = 'نتيجة:';
+                    sendSubmit.value = 'يرسل';
+                    break;
+                case 'ru':
+                    titelH1.textContent = 'Поздравления с днем ​​рождения';
+                    nameLabel.textContent = 'полное имя:';
+                    ageLabel.textContent = 'возраст:';
+                    hobbyLabel.textContent = 'хобби:';
+                    kinshipLabel.textContent = 'родство:';
+                    GreetingStyle.textContent = 'Стиль приветствия:';
+                    funnySelect.textContent = 'забавный';
+                    heartySelect.textContent = 'сердечный';
+                    officialSelect.textContent = 'чиновник';
+                    beadsSelect.textContent = 'бусы';
+                    otherSelect.textContent = 'другой';
+                    // emailLabel.textContent = 'эмаль:';
+                    genderLabel.textContent = 'секс:';
+                    maleRadio.nextSibling.textContent = 'мужской';
+                    femaleRadio.nextSibling.textContent = 'женский';
+                    emojiSelect.textContent = 'Эмодзи?';
+                    emojiYesRadio.nextSibling.textContent = 'Да';
+                    emojiNoRadio.nextSibling.textContent = 'Нет';
+                    nameWishLabel.textContent = 'Там я желаю благословения:';
+                    result.textContent = 'Pезультат:';
+                    sendSubmit.value = 'Отправлять';
+                    break;
+                case 'sp':
+                    titelH1.textContent = 'Saludos de cumpleaños';
+                    nameLabel.textContent = 'Nombre completo:';
+                    ageLabel.textContent = 'Edad:';
+                    hobbyLabel.textContent = 'Pasatiempo:';
+                    kinshipLabel.textContent = 'Parentesco:';
+                    GreetingStyle.textContent = 'Estilo de saludo:';
+                    funnySelect.textContent = 'divertido';
+                    heartySelect.textContent = 'abundante';
+                    officialSelect.textContent = 'oficial';
+                    beadsSelect.textContent = 'rosario';
+                    otherSelect.textContent = 'otro';
+                    // emailLabel.textContent = 'Esmalte:';
+                    genderLabel.textContent = 'Sexo:';
+                    maleRadio.nextSibling.textContent = 'Masculino';
+                    femaleRadio.nextSibling.textContent = 'Femenino';
+                    emojiSelect.textContent = 'emojis?';
+                    emojiYesRadio.nextSibling.textContent = 'Sí';
+                    emojiNoRadio.nextSibling.textContent = 'No';
+                    nameWishLabel.textContent = 'Ahí deseo la bendición:';
+                    result.textContent = 'Resultado:';
+                    sendSubmit.value = 'Enviar';
+                    break;
+            }
+        });
+    </script>
+   
+</body>
+</html>
