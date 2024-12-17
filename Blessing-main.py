@@ -1,9 +1,13 @@
 import os
-import google.generativeai as genai
-from Blesing_DB_mongo import DB
-from pymongo import MongoClient
-from Access_keys import AK
 from datetime import datetime
+
+import google.generativeai as genai  # For Generative AI
+from pymongo import MongoClient     # MongoDB connection
+#from Access_keys import AK          # Custom access keys module
+#from Blesing_DB_mongo import DB   
+
+import boto3
+from botocore.exceptions import ClientError
 
 client = MongoClient('mongodb://localhost:27017/')
 db = client['your_database']
@@ -30,12 +34,46 @@ def Blessing_Generator_sentence(name, age,language,sex,type):
         blessing_request = "write a birthday belssing for a male and consider the following parameters: " + "name: " + name + " age: " + age + " blessing language: " + language + " style: " + type
     return str(blessing_request)
 
+
+def get_secret():
+
+
+    client = boto3.client('secretsmanager')
+
+    # List secrets
+    response = client.list_secrets()
+    print(response)
+    secret_name = "Gemini_API_Key"
+    region_name = "us-west-1"
+
+    # Create a Secrets Manager client
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+        
+    )
+    try:
+        get_secret_value_response = client.get_secret_value(
+            SecretId=secret_name
+        )
+    except ClientError as e:
+        # For a list of exceptions thrown, see
+        # https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+        raise e
+
+    return get_secret_value_response['SecretString']
+
+
+    
 def belssing_request(sentence_request):
 
     #user_text=str(input("enter a sentence:\n"))
     # user_text = "כתוב ברכה בחרוזים ליום הולדת 25 של שי"
     # print(user_text)
-    API_KEY= AK.api_key
+    API_KEY= get_secret()
+    #API_KEY="AIzaSyAA0q_TyBT0GKKx36n32arRl-1kem8-aoQ"
+    
     genai.configure(api_key=API_KEY)
 
     # Create the model
